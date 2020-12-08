@@ -23,6 +23,7 @@ def __main__():
             break
         
         j = (j+direction[1])%len(data[i])
+        
         nb_trees += (data[i][j] == tree)
     print(nb_trees)
     
@@ -38,10 +39,7 @@ def __main__():
             nb_trees[n] += (data[i][j] == tree)
             
     print(nb_trees)
-    print(reduce(lambda x,y: x*y, nb_trees, 1))
+    # print(reduce(lambda x,y: x*y, nb_trees, 1))
 
-        
-        
-        
 
 __main__()

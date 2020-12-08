@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Dec  5 13:17:27 2020
-
-@author: tremelow
-"""
 
 import re
 
