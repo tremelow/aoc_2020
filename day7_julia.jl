@@ -1,8 +1,11 @@
 mutable struct Node
     id :: String
+    l  :: Dict{Node,Int}
     p  :: Dict{Node,Int} # parents
-    Node() = new("", Dict{String, Int}())
-    Node(s::AbstractString) = new(s, Dict{String, Int}())
+    Node() = new("", Dict{String, Int}(), Dict{String, Int}())
+    function Node(s::AbstractString)
+        new(s, Dict{String, Int}(), Dict{String, Int}())
+    end
 end
 
 function read_entry(line)
@@ -21,12 +24,13 @@ function extract_nodes(filename)
             # get direct relationship between root and leaves
             root, leaves = read_entry(line)
 
-            ## invert this relationship
-
             # if root does not exist, create root
             parent = get!(nodes, root, Node(root))
+            
+            ## invert the relationship, link 
             for (id, nb) in leaves
                 leaf = get!(nodes, id, Node(id))
+                push!(parent.l, leaf => nb)
                 push!(leaf.p, parent => nb)
             end
         end
@@ -37,7 +41,13 @@ end
 nodes = extract_nodes("day7_input")
 
 function all_parents(node)
-    return vcat([p.first.id for p in node.p], 
-                [all_parents(p.first) for p in node.p]...)
+    return union([p.first.id for p in node.p], 
+                    [all_parents(p.first) for p in node.p]...)
 end
-println(length(unique(all_parents(nodes["shiny gold"]))))
+println(length(all_parents(nodes["shiny gold"])))
+
+function sum_leaves(node)
+    return 1 + reduce(+, [w*sum_leaves(l) for (l,w) in node.l], init=0)
+end
+# -1 to not count the shiny gold bag
+println(sum_leaves(nodes["shiny gold"])-1)
