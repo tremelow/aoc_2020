@@ -10,6 +10,7 @@ def __main__():
     file = open("day4_input","r")
     # data is separated by 1 blank line
     data = file.read().split('\n\n')
+    print(len(data))
     
     
     ##----------------------------------------
