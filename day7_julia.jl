@@ -43,7 +43,7 @@ end
 println(length(all_origins(nodes["shiny gold"])))
 
 function sum_dests(node)
-    return 1 + reduce(+, [w*sum_dests(n) for (n,w) in node.nxt], init=0)
+    return reduce(+, [w*sum_dests(n) for (n,w) in node.nxt], init=1)
 end
 # -1 to not count the shiny gold bag
 println(sum_dests(nodes["shiny gold"])-1)
