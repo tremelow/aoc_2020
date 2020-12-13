@@ -5,7 +5,7 @@ function compute_id(code)
     return value
 end
 
-data = readlines("day5_input")
+data = readlines("day05_input")
 ids = compute_id.(data)
 println(maximum(ids))
 

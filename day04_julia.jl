@@ -31,7 +31,7 @@ end
 req_keys = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
 valid_ecl = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
 
-data = extract_passports("day4_input")
+data = extract_passports("day04_input")
 valid1 = p -> all( x -> (x in keys(p)) , req_keys)
 println(count(valid1, data))
 

@@ -5,7 +5,7 @@ import re
 
 def __main__():
     sep = re.compile(r'\W+')
-    file = open("day2_input","r")
+    file = open("day02_input","r")
     
     data = [sep.split(line) for line in file.read().split('\n')[:-1]]
     

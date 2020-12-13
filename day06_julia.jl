@@ -18,6 +18,6 @@ end
 score1 = g -> length( unique( vcat( split.(g, "")... ) ) )
 score2 = g -> length( intersect( hcat( split.(g, "") )... ) )
 
-groups = extract_groups("day6_input")
+groups = extract_groups("day06_input")
 println(sum(score1.(groups)))
 println(sum(score2.(groups)))

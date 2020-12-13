@@ -45,6 +45,6 @@ function follow_instr2(instr)
     return acc
 end
 
-instr = extract_instructions("day8_input")
+instr = extract_instructions("day08_input")
 println(follow_instr1(instr))
 println(follow_instr2(instr))

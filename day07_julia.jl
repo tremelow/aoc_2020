@@ -34,7 +34,7 @@ function extract_graph(filename)
     return nodes
 end
 
-nodes = extract_graph("day7_input")
+nodes = extract_graph("day07_input")
 
 function all_origins(node)
     return union([p for (p,_) in node.prv], 

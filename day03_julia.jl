@@ -7,7 +7,7 @@ function cnt_trees(d, slope)
     return count(map((i,j)->slope[i,j], ii, jj))
 end
 
-f = readlines("day3_input")
+f = readlines("day03_input")
 slope = transpose( map( x->(x=='#'), hcat(collect.(f)...) ) )
 
 println(cnt_trees((1,3), slope))

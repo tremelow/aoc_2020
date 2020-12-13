@@ -28,6 +28,6 @@ function extract_data(filename)
 end
 
 
-data = extract_data("day2_input")
+data = extract_data("day02_input")
 println(count(ex1.(data)))
 println(count(ex2.(data)))

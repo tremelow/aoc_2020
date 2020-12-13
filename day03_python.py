@@ -8,7 +8,7 @@ from functools import reduce
 
 
 def __main__():
-    file = open("day3_input","r")
+    file = open("day03_input","r")
     
     data = [line for line in file.read().split('\n')[:-1]]
     tree = "#"

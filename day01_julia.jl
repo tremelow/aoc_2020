@@ -18,6 +18,6 @@ function ex2(data, tgt)
     return -1
 end
 
-data = extract_data("day1_input")
+data = extract_data("day01_input")
 ex1(data, 2020)
 ex2(data, 2020)

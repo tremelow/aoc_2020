@@ -42,7 +42,7 @@ def crusher(arr, tgt):
 def __main__():
     ##----------------------------------------
     ## READ DATA
-    file = open("day1_input")
+    file = open("day01_input")
     # read data and convert it to a list of int
     data = [int(el) for el in file.read().split('\n')[:-1]]
     

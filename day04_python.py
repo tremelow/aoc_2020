@@ -7,7 +7,7 @@ Created on Sat Dec  5 15:41:06 2020
 import re
 
 def __main__():
-    file = open("day4_input","r")
+    file = open("day04_input","r")
     # data is separated by 1 blank line
     data = file.read().split('\n\n')
     print(len(data))

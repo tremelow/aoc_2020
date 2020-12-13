@@ -6,7 +6,7 @@ function extract_data(filename)
     end
 end
 
-data = extract_data("day9_input")
+data = extract_data("day09_input")
 stencil = 25
 
 function valid(val, preamble)
