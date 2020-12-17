@@ -35,8 +35,8 @@ function contig_set(data, tgt)
         i += 1
         dataSum = filter(<=(tgt), accumulate(+, drop(data, i)))
     end
-    
-    return data[( 1:length(dataSum) ) .+ i]
+
+    return data[ ( 1:length(dataSum) ) .+ i ]
 end
 set = contig_set(data, key)
 println(minimum(set) + maximum(set))

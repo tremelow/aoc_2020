@@ -6,7 +6,7 @@ function extract_data(filename)
         ## Extract conditions
         while true
             line = readline(f)
-            isempty(line) && break # do ... while 
+            isempty(line) && break # do ... while
 
             field_name, conditions = split(line, ": ")
             cond1, cond2 = split(conditions, " or ")
@@ -37,14 +37,15 @@ function isin(r, val)
     return ((val in r[1]) || (val in r[2]))
 end
 
-function error_rate(ticket, cond)
-    error = 0
+function error(ticket, cond)
+    is_valid, err = true, 0
     for val in ticket
         if !any(isin(r, val) for r in values(cond))
-            error += val
+            is_valid = false
+            err += val
         end
     end
-    return error
+    return is_valid, err
 end
 
 function find_possible_positions(fields, cond)
@@ -57,12 +58,25 @@ function find_possible_positions(fields, cond)
     return pos
 end
 
-cond, my_ticket, tickets = extract_data("day16_input")
-println("Error rate: ", sum(error_rate(t, cond) for t in tickets))
+function clean_up(possible_pos)
+    all_pos = collect(possible_pos)
+    sort!( all_pos, by=(s->length(last(s))) )
+    pos = Dict(f => 0 for f in keys(possible_pos))
+    for (f,p) in all_pos
+        deleteat!(p, findall(x->(x in values(pos)), p))
+        length(p) != 1 && @error "Some field could not be uniquely assigned."
+        push!(pos, f => p[1])
+    end
+    return pos
+end
 
-valid_tickets = filter(t->(error_rate(t,cond) == 0), tickets)
+cond, my_ticket, tickets = extract_data("day16_input")
+println("Error rate: ", sum(error(t, cond)[2] for t in tickets))
+
+valid_tickets = filter(t->error(t,cond)[1], tickets)
 merged_tickets = hcat(valid_tickets...)
 unordered_fields = [merged_tickets[i,:] for i in axes(merged_tickets, 1)]
 
-possible_positions = find_field_positions(unordered_fields, cond)
-## ^ need to clean up possible_positions
+all_positions = find_possible_positions(unordered_fields, cond)
+pos = clean_up(all_positions)
+println(prod(startswith(f, "departure") ? my_ticket[p] : 1 for (f,p) in pos))

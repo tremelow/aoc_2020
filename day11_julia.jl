@@ -43,7 +43,7 @@ function build_neighbours2(spots)
             directions = [J - I for J in adj]
 
             for d in directions
-                # workaround to not iterate on CartesianIndices 
+                # workaround to not iterate on CartesianIndices
                 allVis1 = Iterators.accumulate(+, cycle(d[1]), init=I[1])
                 allVis2 = Iterators.accumulate(+, cycle(d[2]), init=I[2])
                 allVis = Iterators.zip(allVis1, allVis2)
